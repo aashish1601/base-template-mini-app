@@ -17,9 +17,11 @@ interface GameState {
   };
 }
 
+type FantasyTab = "lobby" | "draft" | "squad" | "leaderboard";
+
 interface LobbyProps {
   gameState: GameState;
-  onNavigate: (tab: string) => void;
+  onNavigate: (tab: FantasyTab) => void;
   userFid?: number;
   isConnected: boolean;
 }

@@ -26,9 +26,11 @@ interface GameState {
   };
 }
 
+type FantasyTab = "lobby" | "draft" | "squad" | "leaderboard";
+
 interface LeaderboardProps {
   gameState: GameState;
-  onNavigate: (tab: string) => void;
+  onNavigate: (tab: FantasyTab) => void;
 }
 
 export function Leaderboard({ gameState }: LeaderboardProps) {
