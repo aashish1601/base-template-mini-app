@@ -13,8 +13,21 @@ interface LeaderboardEntry {
   isCurrentUser: boolean;
 }
 
+interface GameState {
+  phase: string;
+  currentWeek: number;
+  prizePool: string;
+  passTokenId?: number;
+  manager?: {
+    wallet: string;
+    influenceCoins: number;
+    squad: string[];
+    totalPoints: number;
+  };
+}
+
 interface LeaderboardProps {
-  gameState: any;
+  gameState: GameState;
   onNavigate: (tab: string) => void;
 }
 
@@ -22,12 +35,6 @@ export function Leaderboard({ gameState, onNavigate }: LeaderboardProps) {
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
   const [view, setView] = useState<"overall" | "week">("overall");
   const [selectedWeek, setSelectedWeek] = useState(1);
-
-  useEffect(() => {
-    fetchLeaderboard();
-    const interval = setInterval(fetchLeaderboard, 10000);
-    return () => clearInterval(interval);
-  }, [view, selectedWeek]);
 
   const fetchLeaderboard = async () => {
     try {
@@ -40,6 +47,13 @@ export function Leaderboard({ gameState, onNavigate }: LeaderboardProps) {
       console.error("Failed to fetch leaderboard:", error);
     }
   };
+
+  useEffect(() => {
+    fetchLeaderboard();
+    const interval = setInterval(fetchLeaderboard, 10000);
+    return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [view, selectedWeek]);
 
   const getPrizeEmoji = (rank: number) => {
     if (rank === 1) return "🥇";
@@ -172,7 +186,7 @@ export function Leaderboard({ gameState, onNavigate }: LeaderboardProps) {
                   {leaderboard.find((e) => e.isCurrentUser)?.totalPoints} points
                 </div>
               </div>
-              {leaderboard.find((e) => e.isCurrentUser)?.rank! <= 10 && (
+              {(leaderboard.find((e) => e.isCurrentUser)?.rank ?? 999) <= 10 && (
                 <div className="text-right">
                   <div className="text-lg text-yellow-400">
                     🎉 In prize zone!

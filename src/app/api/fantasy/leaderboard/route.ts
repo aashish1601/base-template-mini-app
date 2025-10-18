@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 
-// Mock storage
+// Mock storage (used for future expansion)
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const gameState = {
   managers: new Map(),
   prizePool: "3.0",

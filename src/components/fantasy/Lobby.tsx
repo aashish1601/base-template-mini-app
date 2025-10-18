@@ -4,8 +4,21 @@ import { useState } from "react";
 import { Button } from "~/components/ui/Button";
 import { ShareButton } from "~/components/ui/Share";
 
+interface GameState {
+  phase: string;
+  currentWeek: number;
+  prizePool: string;
+  passTokenId?: number;
+  manager?: {
+    wallet: string;
+    influenceCoins: number;
+    squad: string[];
+    totalPoints: number;
+  };
+}
+
 interface LobbyProps {
-  gameState: any;
+  gameState: GameState;
   onNavigate: (tab: string) => void;
   userFid?: number;
   isConnected: boolean;

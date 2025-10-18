@@ -19,7 +19,7 @@ const mockCreators = [
   { handle: "neynar", followers: 52000, avgLikes: 195, currentBid: 16, bidder: null, imageUrl: null },
 ];
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     // In production:
     // 1. Fetch trending creators from Neynar API

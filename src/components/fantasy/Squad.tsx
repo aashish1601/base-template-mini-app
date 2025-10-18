@@ -15,20 +15,27 @@ interface SquadMember {
   };
 }
 
+interface GameState {
+  phase: string;
+  currentWeek: number;
+  prizePool: string;
+  passTokenId?: number;
+  manager?: {
+    wallet: string;
+    influenceCoins: number;
+    squad: string[];
+    totalPoints: number;
+  };
+}
+
 interface SquadProps {
-  gameState: any;
+  gameState: GameState;
   onNavigate: (tab: string) => void;
 }
 
 export function Squad({ gameState, onNavigate }: SquadProps) {
   const [squad, setSquad] = useState<SquadMember[]>([]);
   const [captainHandle, setCaptainHandle] = useState<string | null>(null);
-
-  useEffect(() => {
-    fetchSquadDetails();
-    const interval = setInterval(fetchSquadDetails, 15000);
-    return () => clearInterval(interval);
-  }, [gameState.passTokenId]);
 
   const fetchSquadDetails = async () => {
     if (!gameState.passTokenId) return;
@@ -42,6 +49,13 @@ export function Squad({ gameState, onNavigate }: SquadProps) {
       console.error("Failed to fetch squad:", error);
     }
   };
+
+  useEffect(() => {
+    fetchSquadDetails();
+    const interval = setInterval(fetchSquadDetails, 15000);
+    return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [gameState.passTokenId]);
 
   const handleSetCaptain = async (handle: string) => {
     try {

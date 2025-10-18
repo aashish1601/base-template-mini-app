@@ -8,7 +8,6 @@ import { DraftRoom } from "~/components/fantasy/DraftRoom";
 import { Squad } from "~/components/fantasy/Squad";
 import { Leaderboard } from "~/components/fantasy/Leaderboard";
 import { Header } from "~/components/ui/Header";
-import { Footer } from "~/components/ui/Footer";
 
 export type FantasyTab = "lobby" | "draft" | "squad" | "leaderboard";
 
@@ -27,7 +26,7 @@ interface GameState {
 
 export default function FantasyApp() {
   const { isSDKLoaded, context } = useMiniApp();
-  const { address, isConnected } = useAccount();
+  const { isConnected } = useAccount();
   const [activeTab, setActiveTab] = useState<FantasyTab>("lobby");
   const [gameState, setGameState] = useState<GameState>({
     phase: "setup",

@@ -18,7 +18,7 @@ export async function POST(request: Request) {
 
     // Find manager (in production, query from DB)
     let manager = null;
-    for (const [fid, mgr] of gameState.managers.entries()) {
+    for (const [_fid, mgr] of gameState.managers.entries()) {
       if (mgr.passTokenId === passTokenId) {
         manager = mgr;
         break;

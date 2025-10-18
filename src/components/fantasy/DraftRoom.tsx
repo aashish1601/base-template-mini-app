@@ -12,8 +12,21 @@ interface Creator {
   imageUrl?: string;
 }
 
+interface GameState {
+  phase: string;
+  currentWeek: number;
+  prizePool: string;
+  passTokenId?: number;
+  manager?: {
+    wallet: string;
+    influenceCoins: number;
+    squad: string[];
+    totalPoints: number;
+  };
+}
+
 interface DraftRoomProps {
-  gameState: any;
+  gameState: GameState;
   onNavigate: (tab: string) => void;
 }
 
