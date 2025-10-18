@@ -43,7 +43,7 @@ export async function POST(request: Request) {
         if (!baseline) {
           // First time this week - set baseline
           const profile = await oracle.getCreatorProfile(handle);
-          if (profile) {
+          if (profile && profile.followerCount !== null) {
             baseline = profile.followerCount;
             await oracleStorage.storeBaseline(handle, currentWeek, baseline);
           }
