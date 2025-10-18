@@ -72,7 +72,7 @@ export interface NeynarCast {
   replies: {
     count: number;
   };
-  embeds: any[];
+  embeds: unknown[];
   views?: number;
 }
 

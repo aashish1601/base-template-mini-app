@@ -11,7 +11,7 @@ const redis = useRedis
   : null;
 
 // In-memory fallback
-const memoryStore = new Map<string, any>();
+const memoryStore = new Map<string, unknown>();
 
 /**
  * Storage abstraction layer
@@ -27,7 +27,7 @@ class OracleStorage {
   ): Promise<void> {
     const key = `creator:${handle}:week:${weekNumber}`;
     if (redis) {
-      await redis.hset(key, metrics as any);
+      await redis.hset(key, metrics as Record<string, unknown>);
     } else {
       memoryStore.set(key, metrics);
     }
@@ -87,7 +87,7 @@ class OracleStorage {
   ): Promise<void> {
     const key = `creator:${handle}:week:${weekNumber}:points`;
     if (redis) {
-      await redis.hset(key, breakdown as any);
+      await redis.hset(key, breakdown as Record<string, unknown>);
     } else {
       memoryStore.set(key, breakdown);
     }

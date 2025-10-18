@@ -30,7 +30,7 @@ interface DraftRoomProps {
   onNavigate: (tab: string) => void;
 }
 
-export function DraftRoom({ gameState, onNavigate }: DraftRoomProps) {
+export function DraftRoom({ gameState }: DraftRoomProps) {
   const [creators, setCreators] = useState<Creator[]>([]);
   const [selectedCreator, setSelectedCreator] = useState<Creator | null>(null);
   const [bidAmount, setBidAmount] = useState(10);

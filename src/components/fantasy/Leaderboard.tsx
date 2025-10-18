@@ -31,7 +31,7 @@ interface LeaderboardProps {
   onNavigate: (tab: string) => void;
 }
 
-export function Leaderboard({ gameState, onNavigate }: LeaderboardProps) {
+export function Leaderboard({ gameState }: LeaderboardProps) {
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
   const [view, setView] = useState<"overall" | "week">("overall");
   const [selectedWeek, setSelectedWeek] = useState(1);

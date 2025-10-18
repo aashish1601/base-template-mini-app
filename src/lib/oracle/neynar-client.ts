@@ -35,7 +35,7 @@ export class NeynarOracle {
   async getCreatorCasts(fid: number, limit = 100): Promise<NeynarCast[]> {
     try {
       const response = await this.client.fetchCastsForUser({ fid, limit });
-      return response.casts.map((cast: any) => ({
+      return response.casts.map((cast: Record<string, unknown>) => ({
         hash: cast.hash,
         author: {
           fid: cast.author.fid,
