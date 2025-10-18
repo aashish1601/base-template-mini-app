@@ -206,7 +206,7 @@ export function Leaderboard({ gameState }: LeaderboardProps) {
       )}
 
       {/* Claim Prize Button */}
-      {gameState.phase === "settled" && gameState.canClaimPrize && (
+      {gameState.phase === "settled" && gameState.passTokenId && (
         <Button
           onClick={async () => {
             try {
