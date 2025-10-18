@@ -1,4 +1,39 @@
 {
   "buildCommand": "next build",
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "rewrites": [
+    {
+      "source": "/fantasy",
+      "destination": "/fantasy"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
+        }
+      ]
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron/update-scores",
+      "schedule": "*/15 * * * *"
+    }
+  ],
+  "env": {
+    "NEXT_PUBLIC_URL": "@next_public_url",
+    "NEXT_PUBLIC_FRAME_NAME": "@next_public_frame_name"
+  }
 } 
