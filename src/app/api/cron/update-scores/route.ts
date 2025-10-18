@@ -2,13 +2,13 @@ import { NextResponse } from 'next/server';
 
 /**
  * Cron job endpoint for Vercel Cron
- * Triggers the oracle aggregation every 15 minutes
+ * Triggers the oracle aggregation daily
  * 
  * Configure in vercel.json:
  * {
  *   "crons": [{
  *     "path": "/api/cron/update-scores",
- *     "schedule": "*/15 * * * *"
+ *     "schedule": "0 0 * * *"
  *   }]
  * }
  */
