@@ -31,9 +31,5 @@
       "path": "/api/cron/update-scores",
       "schedule": "0 0 * * *"
     }
-  ],
-  "env": {
-    "NEXT_PUBLIC_URL": "@next_public_url",
-    "NEXT_PUBLIC_FRAME_NAME": "@next_public_frame_name"
-  }
+  ]
 } 
